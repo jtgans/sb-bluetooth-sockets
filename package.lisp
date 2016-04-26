@@ -1,5 +1,5 @@
 (defpackage "SB-BLUEZ"
-  (:use "COMMON-LISP" "SB-ALIEN" "SB-EXT")
+  (:use "COMMON-LISP" "SB-ALIEN" "SB-EXT" "SB-BSD-SOCKETS")
   (:documentation
    "A thinly-disguised BlueZ API for SBCL. Ideas blatantly stolen from the
 SBCL sb-bsd-socket API.
@@ -12,3 +12,7 @@ Bluetooth addresses are accepted as strings and internally converted to
 their native bdaddr_t form.")
   (:export rfcomm-socket
            bdaddr-any))
+
+;; Force load libbluetooth.so, otherwise we don't get our C native functions.
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (sb-alien:load-shared-object "libbluetooth.so"))
