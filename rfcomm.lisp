@@ -1,7 +1,7 @@
 (in-package :sb-bluez)
 
 (defclass rfcomm-socket (sb-bsd-sockets:socket)
-  ((family :initform af-bluetooth))
+  ((sb-bsd-sockets::family :initform af-bluetooth))
   (:documentation "Class representing RFCOMM bluetooth sockets (AF_BLUETOOTH)."))
 
 (defmethod socket-namestring ((socket rfcomm-socket))
