@@ -1,13 +1,12 @@
 ("sys/socket.h"
- #+linux "bluetooth/bluetooth.h"
- #+linux "bluetooth/hci.h"
- #+linux "bluetooth/hci_lib.h"
- #+linux "bluetooth/rfcomm.h"
- #+linux "bluetooth/l2cap.h"
- #+linux "bluetooth/sdp.h"
- #+linux "bluetooth/sdp_lib.h")
+ "bluetooth/bluetooth.h"
+ "bluetooth/hci.h"
+ "bluetooth/hci_lib.h"
+ "bluetooth/rfcomm.h"
+ "bluetooth/l2cap.h"
+ "bluetooth/sdp.h"
+ "bluetooth/sdp_lib.h")
 
-#+linux
 (;;(:integer ireq-cache-flush "IREQ_CACHE_FLUSH" "Inquery Request Flush Cache flag")
  (:integer af-bluetooth   "AF_BLUETOOTH"   "Bluetooth Address Family")
  (:integer btproto-rfcomm "BTPROTO_RFCOMM" "Bluetooth RFCOMM connection protocol")
