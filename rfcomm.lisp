@@ -1,12 +1,9 @@
-(in-package :sb-bsd-sockets)
-
-(declaim (debug 2))
+(in-package :sb-bluez)
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (defclass rfcomm-socket (socket)
-    ((family :initform sockint::af-bluetooth))
-    (:documentation
-     "Class representing RFCOMM bluetooth sockets (AF_BLUETOOTH).")))
+    ((family :initform af-bluetooth))
+    (:documentation "Class representing RFCOMM bluetooth sockets (AF_BLUETOOTH).")))
 
 (defmethod socket-namestring ((socket rfcomm-socket))
   (ignore-errors (socket-name socket)))
@@ -17,8 +14,6 @@
 (defun string-to-bdaddr (bdaddrstr)
   (multiple-value-bind (retval bdaddr) (sockint::string-to-bdaddr-int bdaddrstr)
     bdaddr))
-
-(defconstant bdaddr-any "00:00:00:00:00:00")
 
 (defmethod make-sockaddr-for ((socket rfcomm-socket) &optional sockaddr &rest address)
   (let ((address (first address))
