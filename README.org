@@ -1,32 +1,12 @@
-* sb-sockets-bluetooth
+* sb-bluez
 
-=sb-sockets-bluetooth= is an extension to the standard SBCL contrib package,
-=sb-bsd-sockets= and implements BlueZ's RFCOMM sockets using the same overloaded
-socket mechanism available to normal C programs.
+=sb-bluez= is an extension to the standard SBCL contrib package,
+=sb-bsd-sockets= and implements BlueZ's RFCOMM and L2CAP sockets using the same
+overloaded socket mechanism available to normal C programs. In addition, this
+library provides a simplistic interface to the BlueZ SDP services to allow for
+registration of servers, as well as the HCI and inquiry suites to allow for
+remote device discovery.
 
-To use this extension, load in =sb-sockets-bluetooth= using your favorite ASDF
-implementation (please please plase use Quicklisp -- you'll save yourself quite
-a bit of headache) and do the following:
-
-#+BEGIN_SRC lisp
-  (let ((sock (make-instance 'sb-bsd-sockets:rfcomm-socket
-                             :type :stream)))
-    (when sock
-      (sb-bsd-sockets:socket-bind sock sb-bsd-sockets:bdaddr-any 0)
-      (sb-bsd-sockets:socket-listen sock)
-      (let ((conn (sb-bsd-sockets:socket-accept sock)))
-        ;; do something with conn
-        )))
-#+END_SRC
-
-Basically, they work like normal IPv4/6 TCP sockets.
-
-** Author's notes 
-
-I wrote this up in a fit of inspiration on a four-hour flight to Ft. Lauderdale,
-so I'm sure there are bugs. It's also kinda a hacky implementation that could be
-cleaned up some.
-
-I've not tested this with Gray streams, nor have I really given this a proper
-shakedown test run just yet. The API should be relatively stable, but the
-packaging may change.
+To use this extension, load in =sb-bluez= using your favorite ASDF
+implementation (please use Quicklisp -- you'll save yourself quite a bit of
+headache).
