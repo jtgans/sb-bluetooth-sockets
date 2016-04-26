@@ -11,7 +11,14 @@ of memory allocation done to expose new services.
 Bluetooth addresses are accepted as strings and internally converted to
 their native bdaddr_t form.")
   (:export rfcomm-socket
-           bdaddr-any))
+           bdaddr-any)
+  (:import-from sb-bsd-sockets
+                socket-namestring
+                socket-peerstring
+                make-sockaddr-for
+                free-sockaddr-for
+                size-of-sockaddr
+                bits-of-sockaddr))
 
 ;; Force load libbluetooth.so, otherwise we don't get our C native functions.
 (eval-when (:compile-toplevel :load-toplevel :execute)
